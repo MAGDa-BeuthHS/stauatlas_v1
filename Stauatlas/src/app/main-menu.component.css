@@ -1,0 +1,39 @@
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+.example-container{
+  height: 90vh;
+  width: auto;
+}
+
+@media (max-width: 600px) {
+  .example-container {
+    min-height: 75px;
+    width: auto;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    font-size: 10px;
+  }
+}
+@media (max-width: 1024px) {
+  .grid {
+    margin: 0;
+  }
+  .example-container {
+    min-height: 150px;
+    width: auto;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    min-width: 60px;
+  }
+}
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: left;
+  justify-content: left;
+}
+
+.example-sidenav {
+  padding: 120px;
+}

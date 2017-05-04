@@ -1,0 +1,19 @@
+<md-toolbar color="primary">
+  <button md-button  (click)="sidenav.toggle()">
+>>>
+  </button>
+  <span>Stauatlas Dresden</span>
+  <span class= "fill-remaining-space"></span>
+</md-toolbar>
+
+
+<router-outlet></router-outlet>
+<md-sidenav-container class="example-container">
+  <md-sidenav #sidenav class="example-sidenav" mode="push">
+    Jolly good!
+  </md-sidenav>
+
+  <div class="example-sidenav-content">
+    
+  </div>
+</md-sidenav-container>
