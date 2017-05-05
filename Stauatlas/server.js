@@ -7,8 +7,12 @@ const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
 
+const conn = require('./knexfile.js'); //read out the DB Conn Data
+const knex = require('knex')(conn['local']); //require knex query binder
+const Bookshelf = require('bookshelf')(knex); //require Bookshelf ORM Framework
+
 // Get our API routes
-const api = require('./server/routes/api');
+const api = require('./server/routes/api')(Bookshelf);
 
 const app = express();
 
@@ -30,7 +34,7 @@ app.get('*', (req, res) => {
 /**
  * Get port from environment and store in Express.
  */
-const port = process.env.PORT || '3000';
+const port = process.env.PORT || '4200';
 app.set('port', port);
 
 /**
