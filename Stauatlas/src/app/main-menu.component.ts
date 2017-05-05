@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import {MdTabsModule} from '@angular/material';
+import {DomSanitizer} from '@angular/platform-browser';
+import {MdIconRegistry} from '@angular/material';
+
 
 @Component({
   selector: 'main-menu',
@@ -8,5 +10,9 @@ import {MdTabsModule} from '@angular/material';
 })
 
 export class MainMenuComponent{
-
+  constructor(iconRegistry: MdIconRegistry, sanitizer: DomSanitizer) {
+    iconRegistry.addSvgIcon(
+        'menu',
+        sanitizer.bypassSecurityTrustResourceUrl('assets/open-iconic/svg/menu.svg'));
+  }
 }

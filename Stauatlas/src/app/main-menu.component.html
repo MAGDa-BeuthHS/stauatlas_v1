@@ -1,19 +1,76 @@
+<!-- toolbar header -->
+
 <md-toolbar color="primary">
-  <button md-button  (click)="sidenav.toggle()">
->>>
+  <button md-button class="md-icon-button" (click)="sidenav.toggle()">
+    <md-icon svgIcon="menu" alt="icon menu" class="icon"></md-icon>
   </button>
-  <span>Stauatlas Dresden</span>
+  <h1>Stauatlas Dresden</h1>
   <span class= "fill-remaining-space"></span>
 </md-toolbar>
-
-
 <router-outlet></router-outlet>
-<md-sidenav-container class="example-container">
-  <md-sidenav #sidenav class="example-sidenav" mode="push">
-    Jolly good!
+
+<md-sidenav-container class="sidenav-container">
+
+  <!-- sidenav formular -->
+  <md-sidenav #sidenav class="sidenav-form" mode="push">
+    <form class="example-form">
+      <h3>Auswahl</h3>
+  <md-input-container class="example-full-width">
+    <input mdInput placeholder="Stadt (disabled)" disabled value="Dresden">
+  </md-input-container>
+
+  <table class="example-full-width" cellspacing="0"><tr>
+    <td><md-input-container class="example-full-width">
+      <input mdInput placeholder="First name">
+    </md-input-container></td>
+    <td><md-input-container class="example-full-width">
+      <input mdInput placeholder="Long Last Name That Will Be Truncated">
+    </md-input-container></td>
+  </tr></table>
+
+  <p>
+    <md-input-container class="example-full-width">
+      <textarea mdInput placeholder="Address">1600 Amphitheatre Pkwy</textarea>
+    </md-input-container>
+    <md-input-container class="example-full-width">
+      <textarea mdInput placeholder="Address 2"></textarea>
+    </md-input-container>
+  </p>
+
+  <table class="example-full-width" cellspacing="0"><tr>
+    <td><md-input-container class="example-full-width">
+      <input mdInput placeholder="City">
+    </md-input-container></td>
+    <td><md-input-container class="example-full-width">
+      <input mdInput placeholder="State">
+    </md-input-container></td>
+    <td><md-input-container class="example-full-width">
+      <input mdInput #postalCode maxlength="5" placeholder="Postal Code" value="94043">
+      <md-hint align="end">{{postalCode.value.length}} / 5</md-hint>
+    </md-input-container></td>
+  </tr></table>
+</form>
   </md-sidenav>
 
+<!-- Tab navigation -->
+
   <div class="example-sidenav-content">
-    
+    <md-tab-group #tab class="tab-title" selectedIndex = "0" dynamicHeight="true">
+      <md-tab label="Aktuelle Stauinformationen">
+
+      </md-tab>
+      <md-tab label="Ferienzeiten">
+
+      </md-tab>
+      <md-tab label="Events">
+
+      </md-tab>
+      <md-tab label="StVO">
+
+      </md-tab>
+    </md-tab-group>
   </div>
 </md-sidenav-container>
+<router-outlet></router-outlet>
+<!--
+      -->

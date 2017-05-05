@@ -8,7 +8,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule }    from './app-routing.module';
 import { MainMenuComponent } from './main-menu.component';
 import { MdToolbarModule, MdButtonModule, MdCheckboxModule,
-         MdSidenavModule, MdInputModule, MdSelectModule, MdMenuModule } from '@angular/material'
+         MdSidenavModule, MdInputModule, MdSelectModule, MdMenuModule, MdTabsModule, MdIconModule } from '@angular/material'
+
 
 @NgModule({
   imports:[
@@ -23,7 +24,9 @@ import { MdToolbarModule, MdButtonModule, MdCheckboxModule,
   MdInputModule,
   MdMenuModule,
   MdToolbarModule,
-  MdSelectModule
+  MdTabsModule,
+  MdSelectModule,
+  MdIconModule
   ],
   declarations:[
     AppComponent,
