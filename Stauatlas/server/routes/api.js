@@ -3,29 +3,71 @@
  */
 const express = require('express');
 const router = express.Router();
+const Sequelize = require('sequelize');
 
-module.exports = function(Bookshelf){
+const sequelize = new Sequelize('masterprojektgeschwindigkeitsdaten', 'root', '', {
+  host: 'localhost',
+  dialect: 'mysql',
+  define: {
+    timestamps: false  // I don't want timestamp fields by default
+  },
 
-  // User model
-  let Sensordata = Bookshelf.Model.extend({
-    tableName: 'sensordaten'
-  });
+  pool: {
+    max: 5,
+    min: 0,
+    idle: 10000
+  }
+});
 
-  router.route('/getSensor')
-  // fetch all users
-  .get(function (req, res) {
-    Sensordata.forge({sensor_id: 1080})
-    .fetch()
-    .then(function (collection) {
-      res.send(collection.toJSON())
-    })
-  });
+sequelize
+.authenticate()
+.then(function(err) {
+  console.log('Connection has been established successfully.');
+})
+.catch(function (err) {
+  console.log('Unable to connect to the database:', err);
+});
 
-  router.route('/test')
-  // fetch all users
-  .get(function (req, res) {
-    res.send('yey')
-  });
+// Sensordata model
+let SensorModel = sequelize.define('sensor_data', {
+  sensor_id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true
+  },
+  speed: {
+    type: Sequelize.FLOAT
+  },
+  timestamp: {
+    type: Sequelize.DATE,
+    primaryKey: true
+  }
+});
 
-  return router;
-};
+/* GET api listing. */
+router.get('/', (req,res) => {
+  console.log(1234);
+  res.send('api works');
+});
+// Get all tempolimits
+router.get('/tempolimits', (req, res) => {
+  SensorModel.findAll({
+    where: {
+      sensor_id: 1080,
+      speed: {
+        gt: 95
+      }
+    },
+    limit: 1000
+  })
+  .then(function(col) {
+    if(col) {
+      console.log(col.length);
+      res.send(col)
+    } else {
+      res.send('error')
+    }
+  })
+});
+
+
+module.exports = router;

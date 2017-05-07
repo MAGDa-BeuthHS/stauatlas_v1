@@ -7,12 +7,8 @@ const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
 
-const conn = require('./knexfile.js'); //read out the DB Conn Data
-const knex = require('knex')(conn['local']); //require knex query binder
-const Bookshelf = require('bookshelf')(knex); //require Bookshelf ORM Framework
-
 // Get our API routes
-const api = require('./server/routes/api')(Bookshelf);
+const api = require('./server/routes/api');
 
 const app = express();
 
